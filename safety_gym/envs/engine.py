@@ -315,6 +315,7 @@ class Engine(gym.Env, gym.utils.EzPickle):
 
         self.seed(self._seed)
         self.done = True
+        self.obs_dic = {}
 
     def parse(self, config):
         ''' Parse a config dict - see self.DEFAULT for description '''
@@ -1111,6 +1112,7 @@ class Engine(gym.Env, gym.utils.EzPickle):
             obs['ctrl'] = self.data.ctrl.copy()
         if self.observe_vision:
             obs['vision'] = self.obs_vision()
+        self.obs_dic = obs
         if self.observation_flatten:
             flat_obs = np.zeros(self.obs_flat_size)
             offset = 0
